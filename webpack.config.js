@@ -9,6 +9,10 @@ module.exports = {
   devtool: 'inline-source-map',
   devServer: {
     hot: true,
+    historyApiFallback: true,
+    host: 'langis.dev',
+    port: 8300,
+    public : 'https://langis.dev',
   },
   module: {
     rules: [

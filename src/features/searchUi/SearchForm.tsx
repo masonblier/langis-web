@@ -24,7 +24,7 @@ export const SearchForm = ({
   };
 
   return (
-    <form className="search-query-form">
+    <div className="search-query-form">
       <label htmlFor="searchQuery" style={{ marginRight: 5 }}>
         Search:
       </label>
@@ -36,6 +36,6 @@ export const SearchForm = ({
       <button onClick={(e) => setSearchQuery(searchQueryVal)}>
         Search
       </button>
-    </form>
+    </div>
   );
 }

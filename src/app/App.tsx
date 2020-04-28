@@ -1,42 +1,26 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-
-import { RootState } from './rootReducer'
-
-import { SearchForm } from 'features/searchUi/SearchForm'
-// import { SearchResultsPage } from 'features/searchUi/SearchResultsPage'
-
 import {
-  setCurrentSearch,
-  setCurrentPage
-} from 'features/searchUi/searchUiSlice'
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom'
+import { QueryParamProvider } from 'use-query-params';
+
+import { SearchPage } from '../pages/SearchPage'
 
 import './App.css'
 
 const App: React.FC = () => {
-  const dispatch = useDispatch()
-
-  // select current state for page
-  const { page, searchQuery } = useSelector(
-    (state: RootState) => state.searchUi
-  )
-
-  // page actions
-  const setSearchQuery = (searchQuery: string) => {
-    dispatch(setCurrentSearch({ searchQuery }))
-  }
-
-  const setJumpToPage = (page: number) => {
-    dispatch(setCurrentPage(page))
-  }
-
-  // TODO content
-
   return <div className="App">
-    <SearchForm
-      searchQuery={searchQuery || ''}
-      setSearchQuery={setSearchQuery}
-    />
+    <Router>
+      <QueryParamProvider ReactRouterRoute={Route}>
+        <Switch>
+          <Route exact path="/" default component={SearchPage} />
+          <Redirect to="/" />
+        </Switch>
+      </QueryParamProvider>
+    </Router>
   </div>
 }
 
