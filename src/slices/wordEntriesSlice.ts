@@ -13,13 +13,35 @@ export interface WordEntry {
   source_id: number
 }
 
+export interface WordEntryNote {
+  id: number
+  word_entry_id: number
+  note: string
+}
+export interface WordEntryReading {
+  id: number
+  word_entry_id: number
+  reading: string
+}
+export interface WordEntryTag {
+  id: number
+  word_entry_id: number
+  tag: string
+}
+
+export interface WordEntriesQueryRecord {
+  word_entry: WordEntry
+  word_entry_notes: WordEntryNote[]
+  word_entry_readings: WordEntryReading[]
+  word_entry_tags: WordEntryTag[]
+}
 interface WordEntriesQueryResult {
-  word_entries: WordEntry[]
+  page: WordEntriesQueryRecord[]
   page_count: number
 }
 
 interface WordEntriesState {
-  wordEntriesById: Record<number, WordEntry>
+  recordsByWordEntryId: Record<number, WordEntriesQueryRecord>
   currentPageIds: number[]
   pageCount: number
   isLoading: boolean
@@ -27,7 +49,7 @@ interface WordEntriesState {
 }
 
 const initialState: WordEntriesState = {
-  wordEntriesById: {},
+  recordsByWordEntryId: {},
   currentPageIds: [],
   pageCount: 0,
   isLoading: false,
@@ -42,16 +64,16 @@ const slice = createSlice({
       state.isLoading = true
     },
     queryWordEntriesSuccess(state, { payload }: PayloadAction<WordEntriesQueryResult>) {
-      const { word_entries, page_count } = payload
+      const { page, page_count } = payload
       state.pageCount = page_count
       state.isLoading = false
       state.error = null
 
-      word_entries.forEach(wordEntry => {
-        state.wordEntriesById[wordEntry.id] = wordEntry
+      page.forEach(record => {
+        state.recordsByWordEntryId[record.word_entry.id] = record
       })
 
-      state.currentPageIds = word_entries.map(wordEntry => wordEntry.id)
+      state.currentPageIds = page.map(page => page.word_entry.id)
     },
     queryWordEntriesFailure(state: WordEntriesState, action: PayloadAction<string>) {
       state.isLoading = false

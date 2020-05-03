@@ -1,18 +1,21 @@
 import React from 'react'
 
-import { WordEntry } from '../../slices/wordEntriesSlice'
+import { WordEntriesQueryRecord } from '../../slices/wordEntriesSlice'
 
 import './SearchResultsList.css'
 
 interface Props {
-  entries: WordEntry[]
+  records: WordEntriesQueryRecord[]
 }
 
-export const SearchResultsList = ({ entries }: Props) => {
-  const renderedEntries = entries.map(wordEntry => (
-    <div key={wordEntry.id}>
-      <p className="search-results-list-orth">{wordEntry.orth}</p>
-      <p>{wordEntry.quote} ({wordEntry.sense})</p>
+export const SearchResultsList = ({ records }: Props) => {
+  const renderedEntries = records.map(record => (
+    <div key={record.word_entry.id}>
+      <p className="search-results-list-orth">{record.word_entry.orth}</p>
+      {record.word_entry_readings ? record.word_entry_readings.map((reading) =>
+        <p key={reading.id} className="search-results-list-reading">{reading.reading}</p>
+      ) : null}
+      <p>{record.word_entry.quote} ({record.word_entry.sense})</p>
     </div>
   ))
 

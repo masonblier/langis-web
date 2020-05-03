@@ -20,12 +20,12 @@ export const SearchPage: React.FC = () => {
     currentPageIds,
     isLoading,
     error: resultError,
-    wordEntriesById,
+    recordsByWordEntryId,
     pageCount
   } = useSelector((state: RootState) => state.wordEntries)
 
-  const wordEntries = currentPageIds.map(
-    wordEntryId => wordEntriesById[wordEntryId]
+  const records = currentPageIds.map(
+    wordEntryId => recordsByWordEntryId[wordEntryId]
   )
 
   // fetch on query param change
@@ -57,7 +57,7 @@ export const SearchPage: React.FC = () => {
   let renderedList = isLoading ? (
     <div>Loading...</div>
   ) : (
-    <SearchResultsList entries={wordEntries} />
+    <SearchResultsList records={records} />
   )
 
   // render
