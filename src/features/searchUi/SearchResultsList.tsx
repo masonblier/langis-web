@@ -10,12 +10,12 @@ interface Props {
 
 export const SearchResultsList = ({ records }: Props) => {
   const renderedEntries = records.map(record => (
-    <div key={record.word_entry.id}>
-      <p className="search-results-list-orth">{record.word_entry.orth}</p>
+    <div key={record.word_entry.id} className='search-results-item'>
+      <div className="search-results-list-orth">{record.word_entry.orth}</div>
       {record.word_entry_readings ? record.word_entry_readings.map((reading) =>
-        <p key={reading.id} className="search-results-list-reading">{reading.reading}</p>
+        <div key={reading.id} className="search-results-list-reading">{reading.reading}</div>
       ) : null}
-      <p>{record.word_entry.quote} ({record.word_entry.sense})</p>
+      <div>{record.word_entry.quote} ({record.word_entry.sense})</div>
     </div>
   ))
 

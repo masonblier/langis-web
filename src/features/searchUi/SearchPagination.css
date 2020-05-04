@@ -18,9 +18,9 @@
   display: inline-block;
   cursor: pointer;
   background-color: #fff;
-  border: 1px solid #d8eef5;
   border-radius: 2px;
   min-width: 1rem;
+  border: 1px solid #f8f8f8;
 }
 
 .search-pagination li > a:focus {
@@ -28,8 +28,8 @@
 }
 
 .search-pagination .selected a {
-  box-shadow: 0 0 2px #1b7d9e;
-  background-color: #f3fcff;
+  background-color: #fefefe;
+  border: 1px solid #d2f2ff;
 }
 
 .search-pagination .disabled > a {

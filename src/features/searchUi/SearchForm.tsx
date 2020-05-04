@@ -25,9 +25,6 @@ export const SearchForm = ({
 
   return (
     <div className="search-query-form">
-      <label htmlFor="searchQuery" style={{ marginRight: 5 }}>
-        Search:
-      </label>
       <input name="searchQuery"
         value={searchQueryVal}
         onChange={(e) => setSearchQueryVal(e.target.value)}

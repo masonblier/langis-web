@@ -8,6 +8,8 @@ import { SearchForm } from '../features/searchUi/SearchForm'
 import { SearchResultsList } from '../features/searchUi/SearchResultsList'
 import { SearchPagination, OnPageChangeCallback } from '../features/searchUi/SearchPagination'
 
+import './SearchPage.css'
+
 export const SearchPage: React.FC = () => {
   const dispatch = useDispatch()
 
@@ -44,7 +46,7 @@ export const SearchPage: React.FC = () => {
   // render error
   if (resultError) {
     return (
-      <div>
+      <div className='search-page-status'>
         <div>Something went wrong...</div>
         <div>{resultError.toString()}</div>
       </div>
@@ -52,13 +54,15 @@ export const SearchPage: React.FC = () => {
   }
 
   // render list
-  const currentPage = Math.min(pageCount, Math.max(queryP || 1, 1)) - 1
+  const adjustedPageCount = Math.max(pageCount, 1);
+  const currentPage = Math.min(adjustedPageCount, Math.max(queryP || 1, 1)) - 1
 
   let renderedList = isLoading ? (
-    <div>Loading...</div>
+    <div className='search-page-status'>Loading...</div>
   ) : (
     <SearchResultsList records={records} />
   )
+  console.log('page', currentPage, adjustedPageCount)
 
   // render
   return <div className="search-page">
@@ -66,10 +70,12 @@ export const SearchPage: React.FC = () => {
       searchQuery={queryQ || ''}
       setSearchQuery={setQueryQ}
     />
-    {renderedList}
+    <div className="search-page-content">
+      {renderedList}
+    </div>
     <SearchPagination
       currentPage={currentPage}
-      pageCount={pageCount}
+      pageCount={adjustedPageCount}
       onPageChange={onPageChanged}
     />
   </div>

@@ -1,0 +1,32 @@
+.search-query-form {
+  font-weight: 300;
+  display: flex;
+}
+.search-query-form input {
+  flex-grow: 1;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 2px 4px;
+  font-size: 1.2em;
+  margin: 0 0.2em;
+}
+.search-query-form input:focus {
+  outline: none;
+  border: 1px solid #89d8f8
+}
+.search-query-form button {
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  background: #fff;
+  font-weight: 400;
+  font-size: 0.8em;
+  outline: none;
+}
+.search-query-form button:hover {
+  background: #e0f6ff;
+  border: 1px solid #89d8f8;
+  cursor: pointer;
+}
+.search-query-form button:focus {
+  border: 1px solid #89d8f8;
+}
