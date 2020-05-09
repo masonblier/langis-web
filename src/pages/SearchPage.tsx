@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import styled from 'styled-components';
 import { useQueryParam, NumberParam, StringParam } from 'use-query-params';
 
 import { RootState } from 'app/rootReducer'
@@ -8,7 +9,9 @@ import { SearchForm } from '../features/searchUi/SearchForm'
 import { SearchResultsList } from '../features/searchUi/SearchResultsList'
 import { SearchPagination, OnPageChangeCallback } from '../features/searchUi/SearchPagination'
 
-import './SearchPage.css'
+const SearchPageContent = styled.div`
+  margin: 1em 0.5em;
+`;
 
 export const SearchPage: React.FC = () => {
   const dispatch = useDispatch()
@@ -62,17 +65,16 @@ export const SearchPage: React.FC = () => {
   ) : (
     <SearchResultsList records={records} />
   )
-  console.log('page', currentPage, adjustedPageCount)
 
   // render
-  return <div className="search-page">
+  return <div>
     <SearchForm
       searchQuery={queryQ || ''}
       setSearchQuery={setQueryQ}
     />
-    <div className="search-page-content">
+    <SearchPageContent>
       {renderedList}
-    </div>
+    </SearchPageContent>
     <SearchPagination
       currentPage={currentPage}
       pageCount={adjustedPageCount}

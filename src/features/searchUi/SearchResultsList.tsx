@@ -1,23 +1,46 @@
 import React from 'react'
+import styled from 'styled-components';
 
 import { WordEntriesQueryRecord } from '../../slices/wordEntriesSlice'
-
-import './SearchResultsList.css'
 
 interface Props {
   records: WordEntriesQueryRecord[]
 }
 
+const SearchResultsItem = styled.div`
+  margin-top: 1em;
+
+  &:first-child {
+    margin-top: 0;
+  }
+`;
+
+const SearchResultsItemOrth = styled.div`
+  font-weight: bold;
+`;
+
+const SearchResultsItemReading = styled.div`
+  font-size: 0.8em;
+  display: inline-block;
+  color: ${p => p.theme.searchUi.readingsColor};
+  margin-left: 0.5rem;
+  &:first-child {
+    margin-left: 0;
+  }
+`;
+
 export const SearchResultsList = ({ records }: Props) => {
   const renderedEntries = records.map(record => (
-    <div key={record.word_entry.id} className='search-results-item'>
-      <div className="search-results-list-orth">{record.word_entry.orth}</div>
-      {record.word_entry_readings ? record.word_entry_readings.map((reading) =>
-        <div key={reading.id} className="search-results-list-reading">{reading.reading}</div>
-      ) : null}
+    <SearchResultsItem key={record.word_entry.id}>
+      <SearchResultsItemOrth>{record.word_entry.orth}</SearchResultsItemOrth>
+      <div>
+        {record.word_entry_readings ? record.word_entry_readings.map((reading) =>
+          <SearchResultsItemReading key={reading.id}>{reading.reading}</SearchResultsItemReading>
+        ) : null}
+      </div>
       <div>{record.word_entry.quote} ({record.word_entry.sense})</div>
-    </div>
+    </SearchResultsItem>
   ))
 
-  return <div className="search-results-list">{renderedEntries}</div>
+  return <React.Fragment>{renderedEntries}</React.Fragment>
 }
