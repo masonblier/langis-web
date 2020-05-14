@@ -5,6 +5,7 @@ import { useQueryParam, NumberParam, StringParam } from 'use-query-params';
 
 import { RootState } from 'app/rootReducer'
 import { queryWordEntries } from '../slices/wordEntriesSlice'
+import { AppWrapper } from '../features/header/AppWrapper'
 import { SearchForm } from '../features/searchUi/SearchForm'
 import { SearchResultsList } from '../features/searchUi/SearchResultsList'
 import { SearchPagination, OnPageChangeCallback } from '../features/searchUi/SearchPagination'
@@ -67,7 +68,7 @@ export const SearchPage: React.FC = () => {
   )
 
   // render
-  return <div>
+  return <AppWrapper>
     <SearchForm
       searchQuery={queryQ || ''}
       setSearchQuery={setQueryQ}
@@ -80,5 +81,5 @@ export const SearchPage: React.FC = () => {
       pageCount={adjustedPageCount}
       onPageChange={onPageChanged}
     />
-  </div>
+  </AppWrapper>
 }

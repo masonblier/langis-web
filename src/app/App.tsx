@@ -13,15 +13,12 @@ import * as themes from './themes'
 import { SearchPage } from '../pages/SearchPage'
 
 const AppContainer = styled.div`
-  max-width: 768px;
-  margin: 0 auto;
-  padding: 1rem;
-
   font-family: -apple-system, BlinkMacSystemFont, 'Open Sans', 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100%;
 
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
