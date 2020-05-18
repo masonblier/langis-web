@@ -4,41 +4,26 @@ import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux'
 
 import { RootState } from 'app/rootReducer'
+import { MenuIcon } from '../../components/icons/MenuIcon'
 import { toggleMenu } from '../../slices/appStateSlice'
 
 const AppHeaderContainer = styled.div`
-  padding: 0.5rem;
-
+  display: flex;
+  flex-direction: row;
   a {
     font-size: 1.2rem;
   }
 `;
 
+const HeaderLink = styled.a`
+  flex-grow: 1;
+  padding: 0.5rem;
+`;
 const AppMenuButton = styled.div`
-  display: block;
-  float: right;
-  width: 0.9rem; height: 0.9rem;
-  margin: 0.2rem;
-  text-align: center;
-  cursor: pointer;
-  opacity: 0.5;
-  background: linear-gradient(
-    to bottom,
-    black,
-    black 20%,
-    transparent 20%,
-    transparent 40%,
-    black 40%,
-    black 60%,
-    transparent 60%,
-    transparent 80%,
-    black 80%
-  );
+  flex-grow: 0;
+  padding: 0.5rem;
   &:hover {
-    opacity: 0.8;
-  }
-  &.showMenu {
-    opacity: 1;
+    opacity: 0.5;
   }
 `;
 
@@ -47,7 +32,9 @@ export const AppHeader = () => {
   const {showMenu} = useSelector((state: RootState) => state.appState)
 
   return <AppHeaderContainer>
-    <a href="/">Langis</a>
-    <AppMenuButton onClick={() => dispatch(toggleMenu())} className={classNames({showMenu})}/>
+    <HeaderLink href="/">Langis</HeaderLink>
+    <AppMenuButton onClick={() => dispatch(toggleMenu())} className={classNames({showMenu})}>
+      <MenuIcon/>
+    </AppMenuButton>
   </AppHeaderContainer>
 }
