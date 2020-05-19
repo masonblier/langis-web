@@ -10,6 +10,7 @@ import { QueryParamProvider } from 'use-query-params';
 import { ThemeProvider } from 'styled-components'
 
 import * as themes from './themes'
+import { ModalPortal } from '../components/modals/ModalPortal'
 import { SearchPage } from '../pages/SearchPage'
 
 const AppContainer = styled.div`
@@ -55,6 +56,7 @@ const App: React.FC = () => {
         </QueryParamProvider>
       </Router>
     </AppContainer>
+    <ModalPortal/>
   </ThemeProvider>
 }
 

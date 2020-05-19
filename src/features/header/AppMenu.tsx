@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from 'app/rootReducer'
 import { CloseIcon } from '../../components/icons/CloseIcon'
 import { KeyIcon } from '../../components/icons/KeyIcon'
-import { toggleMenu } from '../../slices/appStateSlice'
+import { showModal, toggleMenu } from '../../slices/appStateSlice'
 
 const AppMenuContainer = styled.div`
   background: #0c455a;
@@ -30,6 +30,7 @@ const MenuHeader = styled.div`
 const CloseButton = styled.div`
   position: relative;
   top: -3px;
+  cursor: pointer;
   &:hover {
     opacity: 0.5;
   }
@@ -47,6 +48,7 @@ const SectionBody = styled.div`
 `;
 const SectionItem = styled.div`
   padding: 0.7rem 1rem;
+  color: white;
   cursor: pointer;
   &:hover {
     background: #ffffff10;
@@ -55,9 +57,9 @@ const SectionItem = styled.div`
 
 export const AppMenu = () => {
   const dispatch = useDispatch()
-  const {showMenu} = useSelector((state: RootState) => state.appState)
+  const {showingMenu} = useSelector((state: RootState) => state.appState)
 
-  return <AppMenuContainer style={{width: (showMenu ? '' : 0)}}>
+  return <AppMenuContainer style={{width: (showingMenu ? '' : 0)}}>
     <MenuHeader>
       <span>Menu</span>
       <CloseButton onClick={() => dispatch(toggleMenu())}>
@@ -67,10 +69,10 @@ export const AppMenu = () => {
     <SectionHeader>
       Account
     </SectionHeader>
-    <SectionBody>
-      <SectionItem>
+    <SectionBody onClick={() => dispatch(toggleMenu())}>
+      <SectionItem onClick={() => dispatch(showModal('login'))}>
         <KeyIcon color='white'/>
-        <a href="/">Login</a>
+        Login
       </SectionItem>
     </SectionBody>
   </AppMenuContainer>

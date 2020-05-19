@@ -15,13 +15,10 @@ const AppHeaderContainer = styled.div`
   }
 `;
 
-const HeaderLink = styled.a`
-  flex-grow: 1;
-  padding: 0.5rem;
-`;
 const AppMenuButton = styled.div`
   flex-grow: 0;
   padding: 0.5rem;
+  cursor: pointer;
   &:hover {
     opacity: 0.5;
   }
@@ -29,11 +26,13 @@ const AppMenuButton = styled.div`
 
 export const AppHeader = () => {
   const dispatch = useDispatch()
-  const {showMenu} = useSelector((state: RootState) => state.appState)
+  const {showingMenu} = useSelector((state: RootState) => state.appState)
 
   return <AppHeaderContainer>
-    <HeaderLink href="/">Langis</HeaderLink>
-    <AppMenuButton onClick={() => dispatch(toggleMenu())} className={classNames({showMenu})}>
+    <div style={{flexGrow: 1, padding: '0.5rem'}}>
+      <a href="/">Langis</a>
+    </div>
+    <AppMenuButton onClick={() => dispatch(toggleMenu())} className={classNames({showingMenu})}>
       <MenuIcon/>
     </AppMenuButton>
   </AppHeaderContainer>
