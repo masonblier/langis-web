@@ -8,6 +8,7 @@ export const defaultTheme = {
   disabledBorderColor: '#eeeeee',
   aColor: '#3a9e83',
   aHoverColor: '#236352',
+  textLight: '#777777',
   pagination: {
     selectedBorderColor: '#fefefe',
     selectedBackgroundColor: '#d2f2ff',

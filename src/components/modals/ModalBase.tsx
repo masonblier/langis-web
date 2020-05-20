@@ -13,7 +13,7 @@ const ModalBaseContainer = styled.div`
   background: white;
   padding: 1rem;
   width: 550px;
-  height: 350px;
+  min-height: 250px;
   max-width: 100%;
   max-height: 100%;
 `;

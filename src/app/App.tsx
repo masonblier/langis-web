@@ -55,8 +55,8 @@ const App: React.FC = () => {
           </Switch>
         </QueryParamProvider>
       </Router>
+      <ModalPortal/>
     </AppContainer>
-    <ModalPortal/>
   </ThemeProvider>
 }
 
